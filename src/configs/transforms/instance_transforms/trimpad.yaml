@@ -1,0 +1,8 @@
+train:
+  data_object:
+    _target_: src.transforms.PadTrimTransform1D
+    target_size: 119840 # 160 * 749 - targeting 750 windows with our SR and win_length
+inference: 
+  data_object:
+    _target_: src.transforms.PadTrimTransform1D
+    target_size: 119840

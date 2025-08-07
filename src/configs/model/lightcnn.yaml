@@ -1,0 +1,14 @@
+_target_: src.model.ChainModel
+_args_:
+  - _target_: src.model.STFTDeltaFrontend
+    n_fft: 512
+    sample_rate: 16000
+    win_length_ms: 20
+    hop_length_ms: 10
+    delta_win: 5
+    delta_delta_win: 5
+  - _target_: src.model.LightCNN
+    input_channels: 3
+    input_height: 257
+    input_width: 750
+

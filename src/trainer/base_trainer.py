@@ -274,6 +274,8 @@ class BaseTrainer:
                     metrics=self.evaluation_metrics,
                 )
             self.writer.set_step(epoch * self.epoch_len, part)
+            for met in self.metrics["inference"]:
+                self.evaluation_metrics.update(met.name, met.report_epoch())
             self._log_scalars(self.evaluation_metrics)
             self._log_batch(
                 batch_idx, batch, part
@@ -545,7 +547,7 @@ class BaseTrainer:
             self.logger.info(f"Loading model weights from: {pretrained_path} ...")
         else:
             print(f"Loading model weights from: {pretrained_path} ...")
-        checkpoint = torch.load(pretrained_path, self.device)
+        checkpoint = torch.load(pretrained_path, self.device, weights_only=False)
 
         if checkpoint.get("state_dict") is not None:
             self.model.load_state_dict(checkpoint["state_dict"])

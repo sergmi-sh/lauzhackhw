@@ -62,6 +62,10 @@ def main(config):
             full_key = part + "_" + key
             print(f"    {full_key:15s}: {value}")
 
+    with open(save_path / "results.csv", "w") as f:
+        for file_id, score in inferencer.result.items():
+            f.write(f"{file_id},{score}\n")
+
 
 if __name__ == "__main__":
     main()

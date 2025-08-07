@@ -1,0 +1,4 @@
+defaults:
+  - instance_transforms: trimpad
+  - batch_transforms: empty
+  - _self_

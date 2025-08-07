@@ -1,0 +1,6 @@
+device: "auto"
+train: []
+inference:
+  - _target_: src.metrics.EER
+    device: ${metrics.device}
+    name: "eval_EER"

@@ -22,4 +22,9 @@ def collate_fn(dataset_items: list[dict]):
     )
     result_batch["labels"] = torch.tensor([elem["labels"] for elem in dataset_items])
 
+    for key in dataset_items[0].keys():
+        if key in ("data_object", "labels"):
+            continue
+        result_batch[key] = [elem[key] for elem in dataset_items]
+
     return result_batch
